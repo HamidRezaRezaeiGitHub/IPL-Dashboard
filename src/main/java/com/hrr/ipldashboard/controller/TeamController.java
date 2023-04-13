@@ -12,6 +12,7 @@ public class TeamController {
 
     private final TeamRepository teamRepository;
     private final MatchRepository matchRepository;
+
     public TeamController(TeamRepository teamRepository, MatchRepository matchRepository) {
         this.teamRepository = teamRepository;
         this.matchRepository = matchRepository;
@@ -20,7 +21,7 @@ public class TeamController {
     @GetMapping("/team/{teamName}")
     public Team getTeam(@PathVariable String teamName) {
         Team team = teamRepository.findByTeamName(teamName);
-        team.setMatchesList(matchRepository.getByTeam1OrTeam2OrderByDateDesc(teamName, teamName));
+        team.setMatchesList(matchRepository.findLatestMatches(teamName, 4));
         return team;
     }
 }
