@@ -11,7 +11,7 @@ public class MatchDataProcessor implements ItemProcessor<MatchInput, Match> {
     private static final Logger logger = LoggerFactory.getLogger(MatchDataProcessor.class);
 
     @Override
-    public Match process(final MatchInput matchInput) throws Exception {
+    public Match process(final MatchInput matchInput) {
         Match match = new Match();
         match.setId(Long.parseLong(matchInput.getId()));
         match.setCity(matchInput.getCity());

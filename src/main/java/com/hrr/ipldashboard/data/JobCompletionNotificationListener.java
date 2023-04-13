@@ -23,18 +23,18 @@ import java.util.stream.Collectors;
 @Component
 public class JobCompletionNotificationListener implements JobExecutionListener {
     private static final Logger logger = LoggerFactory.getLogger(JobCompletionNotificationListener.class);
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-    @Autowired
-    private EntityManager em;
-    @Autowired
-    private MatchRepository matchRepository;
-    @Autowired
-    private TeamRepository teamRepository;
+    private final JdbcTemplate jdbcTemplate;
+    private final EntityManager em;
+    private final MatchRepository matchRepository;
+    private final TeamRepository teamRepository;
 
     @Autowired
-    public JobCompletionNotificationListener() {
+    public JobCompletionNotificationListener(JdbcTemplate jdbcTemplate, EntityManager em, MatchRepository matchRepository, TeamRepository teamRepository) {
         logger.info("Instantiating a JobCompletionNotificationListener ... - " + this.hashCode());
+        this.jdbcTemplate = jdbcTemplate;
+        this.em = em;
+        this.matchRepository = matchRepository;
+        this.teamRepository = teamRepository;
     }
 
     @Override
@@ -48,6 +48,7 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
                             (rs, rowNum) -> "Team 1: " + rs.getString(1) + ", Team 2: " + rs.getString(2) + ", Date: " + rs.getString(3))
                     .forEach(logger::info);
             logger.info("--------------------");
+
             // method 2
             logger.info("All Matches queried via JPA Repository:");
             matchRepository.findAll().forEach(match -> logger.info(match.toString()));

@@ -26,12 +26,16 @@ import javax.sql.DataSource;
 @EnableBatchProcessing
 public class BatchConfig {
 
-    public BatchConfig() {
+    public BatchConfig(DataSource dataSource, JobCompletionNotificationListener listener, JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory) {
         logger.info("Batch Config instantiated.");
+        this.dataSource = dataSource;
+        this.listener = listener;
+        this.jobBuilderFactory = jobBuilderFactory;
+        this.stepBuilderFactory = stepBuilderFactory;
     }
 
     private static final Logger logger = LoggerFactory.getLogger(BatchConfig.class);
-    private final String[] FIELD_NAMES = new String[]{
+    private static final String[] FIELD_NAMES = new String[]{
             "id",
             "city",
             "date",
@@ -50,14 +54,10 @@ public class BatchConfig {
             "umpire1",
             "umpire2"
     };
-    @Autowired
-    public DataSource dataSource;
-    @Autowired
-    public JobCompletionNotificationListener listener;
-    @Autowired
-    public JobBuilderFactory jobBuilderFactory;
-    @Autowired
-    public StepBuilderFactory stepBuilderFactory;
+    public final DataSource dataSource;
+    public final JobCompletionNotificationListener listener;
+    public final JobBuilderFactory jobBuilderFactory;
+    public final StepBuilderFactory stepBuilderFactory;
 
 
     @Bean
