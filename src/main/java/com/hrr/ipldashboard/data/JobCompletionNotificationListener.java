@@ -39,7 +39,7 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
     @Override
 //    @Transactional -- I am not using EntityManager, so I don't need a transaction to persist data
     public void afterJob(JobExecution jobExecution) {
-        logger.info("Job (" + jobExecution.getJobInstance().getJobName() + ") Status: " + jobExecution.getStatus());
+        logger.info("Job ({}) Status: {}", jobExecution.getJobInstance().getJobName(), jobExecution.getStatus());
         if (BatchStatus.COMPLETED == jobExecution.getStatus()) {
             // method 1
             logger.info("All Matches queried via JDBC:");
@@ -50,7 +50,9 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
 
             // method 2
             logger.info("All Matches queried via JPA Repository:");
-            matchRepository.findAll().forEach(match -> logger.info(match.toString()));
+            matchRepository.findAll().stream()
+                    .map(Match::toString)
+                    .forEach(logger::info);
             logger.info("--------------------");
 
             Set<Team> allTeamsSet = new HashSet<>();
@@ -70,18 +72,22 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
                 allTeamsSet.add(team);
             }
             logger.info("All Teams created before persisting:");
-            allTeamsSet.forEach(team -> logger.info(team.toString()));
+            allTeamsSet.stream()
+                    .map(Team::toString)
+                    .forEach(logger::info);
             logger.info("--------------------");
             teamRepository.saveAll(allTeamsSet);
             logger.info("All Teams created after persisting:");
-            teamRepository.findAll().forEach(team -> logger.info(team.toString()));
+            teamRepository.findAll().stream()
+                    .map(Team::toString)
+                    .forEach(logger::info);
             logger.info("--------------------");
         }
     }
 
     @Override
     public void beforeJob(JobExecution jobExecution) {
-        logger.info("About to start the batch job: " + jobExecution.getJobInstance().getJobName());
+        logger.info("About to start the batch job: {}", jobExecution.getJobInstance().getJobName());
     }
 
 }

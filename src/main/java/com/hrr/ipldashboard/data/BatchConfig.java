@@ -108,7 +108,7 @@ public class BatchConfig {
 
     @Bean
     public Job job1() {
-        logger.info("job1 bean is starting ... - Listener: " + listener.hashCode());
+        logger.info("job1 bean is starting ... - Listener of type {} with id {} is injected.", listener.getClass().getName(), listener.hashCode());
         return jobBuilderFactory
                 .get("job1")
                 .incrementer(new RunIdIncrementer())
