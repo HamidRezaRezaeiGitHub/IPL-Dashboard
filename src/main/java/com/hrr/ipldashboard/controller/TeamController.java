@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class TeamController {
 
@@ -23,5 +25,10 @@ public class TeamController {
         Team team = teamRepository.findByTeamName(teamName);
         team.setMatchesList(matchRepository.findLatestMatches(teamName, 4));
         return team;
+    }
+
+    @GetMapping("/teams")
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();
     }
 }
