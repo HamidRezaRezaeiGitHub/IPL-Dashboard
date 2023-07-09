@@ -3,6 +3,7 @@ package com.hrr.ipldashboard.controller;
 import com.hrr.ipldashboard.model.Team;
 import com.hrr.ipldashboard.repository.MatchRepository;
 import com.hrr.ipldashboard.repository.TeamRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class TeamController {
 
     private final TeamRepository teamRepository;
