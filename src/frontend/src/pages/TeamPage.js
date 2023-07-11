@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { MatchDetailCard } from "../components/MatchDetailCard";
 import { MatchSmallCard } from "../components/MatchSmallCard";
 
@@ -8,29 +9,33 @@ export const TeamPage = () => {
   // Then using the "setTeam" function, the argument will be assigned to the variable.
   const [team, setTeam] = useState({ matchesList: [] });
 
+  const { teamName } = useParams();
+
   useEffect(() => {
     // A function gets defined here, then will be called so it runs.
     // The main wrapper function of useEffect cannot be async (why?), so we're creating another function inside it (why?)
     const fetchMatches = async () => {
-      const response = await fetch(
-        "http://localhost:8080/team/Chennai%20Super%20Kings"
-      );
+      const response = await fetch(`http://localhost:8080/team/${teamName}`);
       const data = await response.json();
       setTeam(data);
     };
     fetchMatches();
-  }, []);
+  }, [teamName]);
   // The array that we pass to the useEffect function defines the situations (dependencies) on which it should be trigerred. When empty, means
   // try the function only the first time that page is loaded.
+
+  if (!team || !team.teamName) {
+    return <h1>Team not found!</h1>;
+  }
 
   return (
     <div className="TeamPage">
       <h1>{team.teamName}</h1>
 
-      <MatchDetailCard match={team.matchesList[0]} />
+      <MatchDetailCard teamName={team.teamName} match={team.matchesList[0]} />
 
       {team.matchesList.slice(1).map((match) => (
-        <MatchSmallCard match={match} />
+        <MatchSmallCard teamName={team.teamName} match={match} />
       ))}
     </div>
   );
