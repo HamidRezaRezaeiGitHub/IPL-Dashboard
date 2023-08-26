@@ -17,12 +17,12 @@ export const TeamPage = () => {
   useEffect(() => {
     // A function gets defined here, then will be called so it runs.
     // The main wrapper function of useEffect cannot be async (why?), so we're creating another function inside it (why?)
-    const fetchMatches = async () => {
+    const fetchTeam = async () => {
       const response = await fetch(`http://localhost:8080/team/${teamName}`);
       const data = await response.json();
       setTeam(data);
     };
-    fetchMatches();
+    fetchTeam();
   }, [teamName]);
   // The array that we pass to the useEffect function defines the situations (dependencies) on which it should be trigerred. When empty, means
   // try the function only the first time that page is loaded.
