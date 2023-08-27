@@ -32,7 +32,7 @@ public class TeamController {
         return matchRepository.getMatchesByTeamByYear(teamName, year);
     }
 
-    @GetMapping("/teams")
+    @GetMapping("/team")
     public List<Team> getAllTeams() {
         return teamRepository.findAll();
     }
