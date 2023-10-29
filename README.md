@@ -3,8 +3,8 @@
 A web application dashboard to view Indian Premier League (IPL) teams and match details, built with Spring Boot and React.
 
 ![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?&style=for-the-badge&logo=java&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-%236DB33F.svg?&style=for-the-badge&logo=spring-boot)
-![Spring Batch](https://img.shields.io/badge/Spring_Batch-%236DB33F.svg?&style=for-the-badge&logo=spring)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-%236DB33F.svg?logo=spring-boot&logoColor=white&style=for-the-badge)
+![Spring Batch](https://img.shields.io/badge/Spring_Batch-%236DB33F.svg?logo=spring-boot&logoColor=white&style=for-the-badge)
 ![Maven](https://img.shields.io/badge/Maven-%23C71A36.svg?&style=for-the-badge&logo=apache-maven&logoColor=white)
 ![React](https://img.shields.io/badge/React-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-%23339933.svg?&style=for-the-badge&logo=node.js&logoColor=white)
@@ -35,23 +35,22 @@ Ensure you have the following installed on your machine:
 - **React: Version 18.2.0**
 
 Instructions:
-1. Navigate to the `frontend` directory.
-2. Run `npm install` to install dependencies.
-3. Run `npm run build` to build the frontend application. The build files will be copied to the Spring application directory.
-4. Navigate back to the project root directory.
-5. Run `mvn install` to install backend dependencies.
-6. Run `mvn spring-boot:run` to start the Spring application.
-7. Once the application is running, open your web browser and navigate to `http://localhost:8080` to access the IPL Dashboard.
+1. Navigate to the `IPL-Dashboard/src/frontend` directory.
+2. Create a `.env` file and define these parameters: `REACT_APP_DATA_START_YEAR=2008`, `REACT_APP_DATA_END_YEAR=2020`, and `REACT_APP_API_ROOT_URL=`. The last parameter can be "//localhost:8080" when developing locally.
+3. Run `npm install` to install dependencies.
+4. Run `npm run build` to build the frontend application. The build files will be copied to the Spring application directory.
+5. Navigate back to the project root directory.
+6. Run `mvn install` to install backend dependencies.
+7. Run `mvn spring-boot:run` to start the Spring application.
+8. Once the application is running, open your web browser and navigate to `http://localhost:8080` to access the IPL Dashboard.
 
 ### Deployment:
-- The application is deployed on AWS. (Detailed deployment steps to be provided)
+- The application is deployed on AWS. (At the moment, the server is turned off.)
 
 ## Usage
-
 The application serves as a dashboard for viewing IPL teams and matches. Users can navigate through different teams, view team details, and see match details for a specified year.
 
 ## Credits
-
 This project was created following a tutorial series by Java Brains on YouTube.
 - Channel: [Java Brains](https://www.youtube.com/@Java.Brains)
 - Playlist: [IPL Dashboard - Spring Boot + React Full Stack development](https://www.youtube.com/playlist?list=PLqq-6Pq4lTTa8V613TZhGq4o8hSgkMGQ0)
@@ -81,11 +80,9 @@ This project was created following a tutorial series by Java Brains on YouTube.
 
 
 ## API Reference
-
 - Backend API endpoints are exposed for fetching team and match data, as defined in the `TeamController` class.
 
 ## Contact
-
 - Email: [hamidreza74hrr@yahoo.com](mailto:hamidreza74hrr@yahoo.com)
 - LinkedIn: [Hamid Reza Rezaei](https://www.linkedin.com/in/hamid-reza-rezaei-17896a125/)
 
