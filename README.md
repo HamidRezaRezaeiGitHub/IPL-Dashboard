@@ -1,6 +1,7 @@
 # IPL-Dashboard
 
 A web application dashboard to view Indian Premier League (IPL) teams and match details, built with Spring Boot and React.
+
 ![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?&style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-%236DB33F.svg?&style=for-the-badge&logo=spring-boot)
 ![Spring Batch](https://img.shields.io/badge/Spring_Batch-%236DB33F.svg?&style=for-the-badge&logo=spring)
